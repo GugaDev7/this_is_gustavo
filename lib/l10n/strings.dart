@@ -8,6 +8,7 @@ class AppStrings {
   static const Map<AppLanguage, Map<String, String>> _localizedValues = {
     AppLanguage.pt: {
       'appTitle': 'Meu App',
+      'homeTitle': 'Início',
       'welcomeMessage': 'Bem-vindo ao meu aplicativo!',
       'settings': 'Configurações',
       'profile': 'Perfil',
@@ -15,6 +16,7 @@ class AppStrings {
     },
     AppLanguage.en: {
       'appTitle': 'My App',
+      'homeTitle': 'Home',
       'welcomeMessage': 'Welcome to my app!',
       'settings': 'Settings',
       'profile': 'Profile',
