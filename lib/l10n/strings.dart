@@ -3,24 +3,25 @@ import 'package:flutter/material.dart';
 enum AppLanguage { pt, en }
 
 class AppStrings {
-  static final ValueNotifier<AppLanguage> currentLanguage = ValueNotifier<AppLanguage>(AppLanguage.pt);
+  static final ValueNotifier<AppLanguage> currentLanguage =
+      ValueNotifier<AppLanguage>(AppLanguage.pt);
 
   static const Map<AppLanguage, Map<String, String>> _localizedValues = {
     AppLanguage.pt: {
       'appTitle': 'Meu App',
       'homeTitle': 'Início',
       'welcomeMessage': 'Bem-vindo ao meu aplicativo!',
-      'settings': 'Configurações',
-      'profile': 'Perfil',
-      'logout': 'Sair',
+      'aboutMe': 'Sobre mim',
+      'projects': 'Projetos',
+      'contact': 'Contato',
     },
     AppLanguage.en: {
       'appTitle': 'My App',
       'homeTitle': 'Home',
       'welcomeMessage': 'Welcome to my app!',
-      'settings': 'Settings',
-      'profile': 'Profile',
-      'logout': 'Logout',
+      'aboutMe': 'About Me',
+      'projects': 'Projects',
+      'contact': 'Contact',
     },
   };
 

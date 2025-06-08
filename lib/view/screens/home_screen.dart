@@ -15,92 +15,87 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final boxDecoration = isDark ? AppBoxDecorations.cardDark : AppBoxDecorations.card;
+    final boxDecoration =
+        isDark ? AppBoxDecorations.cardDark : AppBoxDecorations.card;
     return Scaffold(
+      appBar: AppBarDecorations.buildAppBar(
+        context,
+        AppStrings.get('appTitle'),
+      ), // <-- AppBar fixa aqui
       body: ValueListenableBuilder<AppLanguage>(
         valueListenable: AppStrings.currentLanguage,
         builder: (context, lang, _) {
-          return CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                expandedHeight: 100,
-                pinned: false,
-                floating: false,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: AppBarDecorations.buildAppBar(context, AppStrings.get('appTitle')),
-                ),
-                automaticallyImplyLeading: false,
-                backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-                elevation: 0,
-                toolbarHeight: 0,
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
                   padding: const EdgeInsets.all(20),
                   child: Container(
                     width: double.infinity,
                     height: 400,
                     decoration: boxDecoration,
-                    child: Center(child: Text(AppStrings.get('welcomeMessage'))),
+                    child: Center(
+                      child: Text(AppStrings.get('welcomeMessage')),
+                    ),
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
+                Padding(
                   padding: const EdgeInsets.all(20),
                   child: Container(
                     width: double.infinity,
                     height: 400,
                     decoration: boxDecoration,
-                    child: Center(child: Text(AppStrings.get('welcomeMessage'))),
+                    child: Center(
+                      child: Text(AppStrings.get('welcomeMessage')),
+                    ),
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
+                Padding(
                   padding: const EdgeInsets.all(20),
                   child: Container(
                     width: double.infinity,
                     height: 400,
                     decoration: boxDecoration,
-                    child: Center(child: Text(AppStrings.get('welcomeMessage'))),
+                    child: Center(
+                      child: Text(AppStrings.get('welcomeMessage')),
+                    ),
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
+                Padding(
                   padding: const EdgeInsets.all(20),
                   child: Container(
                     width: double.infinity,
                     height: 400,
                     decoration: boxDecoration,
-                    child: Center(child: Text(AppStrings.get('welcomeMessage'))),
+                    child: Center(
+                      child: Text(AppStrings.get('welcomeMessage')),
+                    ),
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
+                Padding(
                   padding: const EdgeInsets.all(20),
                   child: Container(
                     width: double.infinity,
                     height: 400,
                     decoration: boxDecoration,
-                    child: Center(child: Text(AppStrings.get('welcomeMessage'))),
+                    child: Center(
+                      child: Text(AppStrings.get('welcomeMessage')),
+                    ),
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
+                Padding(
                   padding: const EdgeInsets.all(20),
                   child: Container(
                     width: double.infinity,
                     height: 400,
                     decoration: boxDecoration,
-                    child: Center(child: Text(AppStrings.get('welcomeMessage'))),
+                    child: Center(
+                      child: Text(AppStrings.get('welcomeMessage')),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),
