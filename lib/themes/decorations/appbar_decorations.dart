@@ -12,7 +12,7 @@ class AppBarDecorations {
       toolbarHeight: 100,
       backgroundColor:
           Theme.of(context).brightness == Brightness.dark
-              ? AppColors.primaryDark
+              ? AppColors.surfaceDark
               : AppColors.primary,
       title: Row(
         children: [

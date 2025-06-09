@@ -25,4 +25,11 @@ class TextStyles {
     fontFamily: 'ChunkFive',
     color: Colors.grey,
   );
+
+  static TextStyle presentation(double fontSize) => TextStyle(
+    color: Colors.white,
+    fontSize: fontSize,
+    fontWeight: FontWeight.normal,
+    fontFamily: 'ChunkFive',
+  );
 }

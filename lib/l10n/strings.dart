@@ -10,7 +10,8 @@ class AppStrings {
     AppLanguage.pt: {
       'appTitle': 'Meu App',
       'homeTitle': 'Início',
-      'welcomeMessage': 'Bem-vindo ao meu aplicativo!',
+      'welcomeMessage':
+          'Olá, sou o Gustavo Rodrigues. Desenvolvedor Flutter em constante evolução. Estou sempre estudando, testando e buscando formas de me tornar um profissional \ncada vez melhor.',
       'aboutMe': 'Sobre mim',
       'projects': 'Projetos',
       'contact': 'Contato',
@@ -18,7 +19,8 @@ class AppStrings {
     AppLanguage.en: {
       'appTitle': 'My App',
       'homeTitle': 'Home',
-      'welcomeMessage': 'Welcome to my app!',
+      'welcomeMessage':
+          "Hi, I'm Gustavo Rodrigues. \nA Flutter Developer in constant evolution. I'm always learning, experimenting, and striving to become a better professional \nevery day.",
       'aboutMe': 'About Me',
       'projects': 'Projects',
       'contact': 'Contact',

@@ -11,11 +11,15 @@ class AppThemes {
       surface: AppColors.surface,
       error: AppColors.error,
     ),
-    scaffoldBackgroundColor: AppColors.background,
+    scaffoldBackgroundColor: AppColors.primary,
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: Colors.black, fontSize: 16),
       bodyMedium: TextStyle(color: Colors.black54, fontSize: 14),
-      headlineLarge: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+      headlineLarge: TextStyle(
+        color: Colors.black,
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+      ),
     ),
   );
 
@@ -28,11 +32,15 @@ class AppThemes {
       surface: AppColors.surfaceDark,
       error: AppColors.errorDark,
     ),
-    scaffoldBackgroundColor: AppColors.backgroundDark,
+    scaffoldBackgroundColor: AppColors.surfaceDark,
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: Colors.white, fontSize: 16),
       bodyMedium: TextStyle(color: Colors.white70, fontSize: 14),
-      headlineLarge: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+      headlineLarge: TextStyle(
+        color: Colors.white,
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+      ),
     ),
   );
 }
