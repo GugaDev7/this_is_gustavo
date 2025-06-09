@@ -15,15 +15,17 @@ class TextStyles {
   );
 
   static const TextStyle body = TextStyle(
-    fontSize: 16,
+    color: Colors.white,
+    fontSize: 25,
     fontWeight: FontWeight.normal,
+    fontFamily: 'ChunkFive',
   );
 
   static const TextStyle caption = TextStyle(
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: FontWeight.w400,
     fontFamily: 'ChunkFive',
-    color: Colors.grey,
+    color: Colors.white,
   );
 
   static TextStyle presentation(double fontSize) => TextStyle(

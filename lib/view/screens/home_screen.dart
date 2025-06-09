@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     text:
                                         AppStrings.get(
                                           'welcomeMessage',
-                                        ).trimRight(), // remove espaços e quebras no final
+                                        ).trimRight(),
                                     style: TextStyles.presentation(
                                       screenWidth * 0.05,
                                     ),

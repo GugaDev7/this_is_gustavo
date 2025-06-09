@@ -4,11 +4,15 @@ import 'package:this_is_gustavo/main.dart';
 import 'package:this_is_gustavo/themes/colors.dart';
 import 'package:this_is_gustavo/themes/decorations/text_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:this_is_gustavo/utils/navigation_helpers.dart';
+import 'package:this_is_gustavo/view/screens/about_screen.dart';
+import 'package:this_is_gustavo/view/screens/home_screen.dart';
 
 class AppBarDecorations {
   static AppBar buildAppBar(BuildContext context, String title) {
     final iconSize = 30.0;
     return AppBar(
+      automaticallyImplyLeading: false,
       toolbarHeight: 100,
       backgroundColor:
           Theme.of(context).brightness == Brightness.dark
@@ -43,7 +47,13 @@ class AppBarDecorations {
                   children: [
                     if (showTexts) ...[
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          navigateWithSlide(
+                            context,
+                            HomeScreen(),
+                            toLeft: true,
+                          );
+                        },
                         child: Text(
                           AppStrings.get('homeTitle'),
                           style: TextStyles.title,
@@ -51,7 +61,13 @@ class AppBarDecorations {
                       ),
                       SizedBox(width: 16),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          navigateWithSlide(
+                            context,
+                            AboutScreen(),
+                            toLeft: true,
+                          );
+                        },
                         child: Text(
                           AppStrings.get('aboutMe'),
                           style: TextStyles.title,
