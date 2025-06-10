@@ -20,17 +20,32 @@ class AppBarDecorations {
               : AppColors.primary,
       title: Row(
         children: [
-          SvgPicture.asset('assets/images/logo.svg'),
+          GestureDetector(
+            child: SvgPicture.asset('assets/images/logo.svg'),
+            onTap: () {
+              if (ModalRoute.of(context)?.settings.name != '/home') {
+                navigateWithFade(context, HomeScreen(), routeName: '/home');
+              }
+            },
+          ),
           SizedBox(width: 8),
-          SvgPicture.asset(
-            'assets/icons/bulb.svg',
-            height: 90,
-            colorFilter: ColorFilter.mode(
-              Theme.of(context).brightness == Brightness.dark
-                  ? Colors.yellow
-                  : Colors.white,
-              BlendMode.srcIn,
+          GestureDetector(
+            child: SvgPicture.asset(
+              'assets/icons/bulb.svg',
+              height: 90,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).brightness == Brightness.dark
+                    ? Colors.yellow
+                    : Colors.white,
+                BlendMode.srcIn,
+              ),
             ),
+            onTap: () {
+              themeModeNotifier.value =
+                  Theme.of(context).brightness == Brightness.dark
+                      ? ThemeMode.light
+                      : ThemeMode.dark;
+            },
           ),
         ],
       ),
@@ -48,11 +63,14 @@ class AppBarDecorations {
                     if (showTexts) ...[
                       TextButton(
                         onPressed: () {
-                          navigateWithSlide(
-                            context,
-                            HomeScreen(),
-                            toLeft: true,
-                          );
+                          if (ModalRoute.of(context)?.settings.name !=
+                              '/home') {
+                            navigateWithFade(
+                              context,
+                              HomeScreen(),
+                              routeName: '/home',
+                            );
+                          }
                         },
                         child: Text(
                           AppStrings.get('homeTitle'),
@@ -62,11 +80,7 @@ class AppBarDecorations {
                       SizedBox(width: 16),
                       TextButton(
                         onPressed: () {
-                          navigateWithSlide(
-                            context,
-                            AboutScreen(),
-                            toLeft: true,
-                          );
+                          navigateWithFade(context, AboutScreen());
                         },
                         child: Text(
                           AppStrings.get('aboutMe'),
