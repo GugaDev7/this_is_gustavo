@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:this_is_gustavo/l10n/strings.dart';
 import 'package:this_is_gustavo/themes/decorations/appbar_decorations.dart';
-import 'package:this_is_gustavo/themes/decorations/box_decorations.dart';
 import 'package:this_is_gustavo/themes/decorations/drawer_decoration.dart';
 import 'package:this_is_gustavo/themes/decorations/text_styles.dart';
 import 'package:this_is_gustavo/view/widgets/animated_wave_background.dart';
@@ -29,8 +28,6 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final boxDecoration = isDark ? AppBoxDecorations.cardDark : AppBoxDecorations.card;
     final screenWidth = MediaQuery.of(context).size.width;
     final canUseRow = screenWidth > 1100;
 
@@ -46,14 +43,8 @@ class _AboutScreenState extends State<AboutScreen> {
     );
 
     return Scaffold(
-      appBar: AppBarDecorations.buildAppBar(
-        context,
-        AppStrings.get('appTitle'),
-        showDrawer: !canUseRow, // <-- Adicione isto!
-      ),
-
+      appBar: AppBarDecorations.buildAppBar(context, showDrawer: !canUseRow),
       drawer: !canUseRow ? const AppDrawer() : null,
-
       body: Stack(
         children: [
           const AnimatedWaveBackground(angle: 170),
@@ -71,7 +62,7 @@ class _AboutScreenState extends State<AboutScreen> {
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 25.0, top: 40),
+                                    padding: const EdgeInsets.only(left: 25.0, top: 58),
                                     child: Text(AppStrings.get('aboutMessage'), style: TextStyles.body),
                                   ),
                                 ),

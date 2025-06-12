@@ -10,13 +10,14 @@ import 'package:this_is_gustavo/view/screens/home_screen.dart';
 import 'package:this_is_gustavo/view/screens/projects_screen.dart';
 
 class AppBarDecorations {
-  static AppBar buildAppBar(BuildContext context, String title, {bool showDrawer = false}) {
+  static AppBar buildAppBar(BuildContext context, {bool showDrawer = false}) {
     final iconSize = 30.0;
     return AppBar(
       automaticallyImplyLeading: false,
       toolbarHeight: 100,
       backgroundColor: Colors.transparent,
       elevation: 0,
+      // Mostra ícone do menu apenas se Drawer estiver visível
       leading:
           showDrawer
               ? Builder(
@@ -30,6 +31,7 @@ class AppBarDecorations {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Logo
           GestureDetector(
             child: SvgPicture.asset('assets/images/logo.svg'),
             onTap: () {
@@ -39,6 +41,7 @@ class AppBarDecorations {
             },
           ),
           SizedBox(width: 8),
+          // Ícone de tema
           GestureDetector(
             child: SvgPicture.asset(
               'assets/icons/bulb.svg',
@@ -56,6 +59,7 @@ class AppBarDecorations {
         ],
       ),
       centerTitle: false,
+      // Actions só aparecem se Drawer não estiver visível
       actions:
           showDrawer
               ? []
@@ -69,6 +73,7 @@ class AppBarDecorations {
                         return Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            // Botões de navegação só em telas grandes
                             if (showTexts) ...[
                               TextButton(
                                 onPressed: () {
@@ -101,6 +106,7 @@ class AppBarDecorations {
                               ),
                               SizedBox(width: 32),
                             ],
+                            // Botão de alternar tema
                             IconButton(
                               iconSize: iconSize,
                               color: Colors.white,
@@ -112,6 +118,7 @@ class AppBarDecorations {
                                     Theme.of(context).brightness == Brightness.dark ? ThemeMode.light : ThemeMode.dark;
                               },
                             ),
+                            // Botão de alternar idioma
                             IconButton(
                               iconSize: iconSize,
                               icon: Image.asset(

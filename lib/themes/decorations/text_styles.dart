@@ -9,15 +9,16 @@ class TextStyles {
   );
 
   static const TextStyle subtitle = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
+    color: Colors.white,
+    fontSize: 23,
+    fontWeight: FontWeight.w100,
     fontFamily: 'ChunkFive',
   );
 
   static const TextStyle body = TextStyle(
     color: Colors.white,
-    fontSize: 25,
-    fontWeight: FontWeight.normal,
+    fontSize: 23,
+    fontWeight: FontWeight.w100,
     fontFamily: 'ChunkFive',
   );
 
@@ -28,10 +29,6 @@ class TextStyles {
     color: Colors.white,
   );
 
-  static TextStyle presentation(double fontSize) => TextStyle(
-    color: Colors.white,
-    fontSize: fontSize,
-    fontWeight: FontWeight.normal,
-    fontFamily: 'ChunkFive',
-  );
+  static TextStyle presentation(double fontSize) =>
+      TextStyle(color: Colors.white, fontSize: fontSize, fontWeight: FontWeight.normal, fontFamily: 'ChunkFive');
 }

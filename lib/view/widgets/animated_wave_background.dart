@@ -49,7 +49,7 @@ class _WavePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint =
         Paint()
-          ..color = Colors.grey.shade300.withOpacity(0.18)
+          ..color = Colors.grey.shade300.withAlpha(60)
           ..style = PaintingStyle.fill;
 
     final path = Path();
@@ -62,7 +62,6 @@ class _WavePainter extends CustomPainter {
     path.moveTo(0, size.height);
     for (double x = 0; x <= size.width; x += 1) {
       // Onda senoidal com ângulo
-      final waveX = x * cos(radians) - baseY * sin(radians);
       final waveY = amplitude * sin((x / size.width * 2 * pi) + phase);
       final y = baseY + waveY + x * tan(radians);
       path.lineTo(x, y);

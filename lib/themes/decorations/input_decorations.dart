@@ -24,7 +24,7 @@ class GetInputDecoration {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(color: AppColors.primary, width: 4),
+        borderSide: const BorderSide(color: AppColors.warning, width: 4),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),

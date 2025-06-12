@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:this_is_gustavo/l10n/strings.dart';
 import 'package:this_is_gustavo/main.dart';
 import 'package:this_is_gustavo/themes/colors.dart';
-import 'package:this_is_gustavo/themes/decorations/text_styles.dart';
 import 'package:this_is_gustavo/view/screens/about_screen.dart';
 import 'package:this_is_gustavo/view/screens/contact_screen.dart';
 import 'package:this_is_gustavo/view/screens/home_screen.dart';
@@ -22,11 +21,10 @@ class AppDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
-              color: Theme.of(context).brightness == Brightness.dark ? AppColors.surfaceDark : AppColors.primary,
-            ),
+            decoration: BoxDecoration(color: isDark ? AppColors.surfaceDark : AppColors.primary),
             child: Center(child: SvgPicture.asset('assets/images/logo.svg')),
           ),
+          // Navegação
           ListTile(
             title: Text(AppStrings.get('homeTitle')),
             onTap: () {
@@ -52,6 +50,7 @@ class AppDrawer extends StatelessWidget {
             },
           ),
           const Divider(),
+          // Alternar tema
           ListTile(
             leading: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
             title: Text(AppStrings.get('themeMode')),
@@ -60,6 +59,7 @@ class AppDrawer extends StatelessWidget {
               Navigator.of(context).pop();
             },
           ),
+          // Alternar idioma
           ListTile(
             leading: Image.asset(
               lang == AppLanguage.pt ? 'assets/icons/br.png' : 'assets/icons/us.png',

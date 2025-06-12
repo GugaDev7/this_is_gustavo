@@ -17,11 +17,12 @@ class AppStrings {
           """Sou Gustavo Rodrigues, desenvolvedor Flutter apaixonado por tecnologia e pelo processo de transformar ideias em soluções digitais funcionais e bonitas. Estou constantemente estudando, me desafiando e evoluindo como desenvolvedor, buscando sempre boas práticas, código limpo e interfaces intuitivas.
 
 Atualmente, foco no desenvolvimento de aplicativos mobile e web com Flutter, aprimorando meus conhecimentos em arquitetura, testes, performance e design responsivo.""",
-      'technologies': 'Tecnologias e ferramentas que domino',
+      'technologies': 'Tecnologias e ferramentas que domino:',
       'projects': 'Projetos',
       'contact': 'Contato',
       'welcomecontact':
           'Entre em contato\nFico à disposição para conversar sobre oportunidades, projetos ou colaborações. Preencha o formulário ou use os links abaixo para me contatar.',
+      'sendMessage': 'Enviar',
     },
 
     AppLanguage.en: {
@@ -35,9 +36,12 @@ Atualmente, foco no desenvolvimento de aplicativos mobile e web com Flutter, apr
           """I'm Gustavo Rodrigues, a Flutter developer passionate about technology and turning ideas into functional and beautiful digital solutions. I'm constantly learning, challenging myself, and evolving as a developer — always aiming for clean code, good practices, and intuitive UI.
 
 Currently, I focus on building mobile and web applications with Flutter, while improving my skills in architecture, testing, performance, and responsive design.""",
-      'technologies': 'Technologies & tools I work with',
+      'technologies': 'Technologies & tools I work with:',
       'projects': 'Projects',
       'contact': 'Contact',
+      'welcomecontact':
+          'Get in touch\nI am available to discuss opportunities, projects, or collaborations. Fill out the form or use the links below to contact me.',
+      'sendMessage': 'Send',
     },
   };
 

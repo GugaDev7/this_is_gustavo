@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+// Widget para efeito de digitação com cursor animado
 class TypingText extends StatefulWidget {
   final String text;
   final TextStyle? style;

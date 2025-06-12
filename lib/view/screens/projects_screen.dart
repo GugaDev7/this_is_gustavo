@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:this_is_gustavo/l10n/strings.dart';
 import 'package:this_is_gustavo/themes/decorations/appbar_decorations.dart';
 import 'package:this_is_gustavo/themes/decorations/drawer_decoration.dart';
 import 'package:this_is_gustavo/view/widgets/animated_wave_background.dart';
@@ -18,7 +17,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
     final canUseRow = screenWidth > 1100;
 
     return Scaffold(
-      appBar: AppBarDecorations.buildAppBar(context, AppStrings.get('appTitle'), showDrawer: !canUseRow),
+      appBar: AppBarDecorations.buildAppBar(context, showDrawer: !canUseRow),
       body: Stack(children: [const AnimatedWaveBackground(angle: 170)]),
       drawer: !canUseRow ? const AppDrawer() : null,
     );
