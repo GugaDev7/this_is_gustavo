@@ -6,15 +6,21 @@ class TypingText extends StatefulWidget {
   final TextStyle? style;
   final Duration speed;
   final String cursor;
-  final TextAlign textAlign;
+  final bool showCursor;
+  final bool showCursorAtEnd;
+  final VoidCallback? onFinished;
+  final TextAlign? textAlign;
 
   const TypingText({
     super.key,
     required this.text,
     this.style,
-    this.speed = const Duration(milliseconds: 35),
+    this.speed = const Duration(milliseconds: 30),
     this.cursor = '|',
-    this.textAlign = TextAlign.center,
+    this.showCursor = true,
+    this.showCursorAtEnd = true,
+    this.onFinished,
+    this.textAlign,
   });
 
   @override
@@ -22,79 +28,74 @@ class TypingText extends StatefulWidget {
 }
 
 class _TypingTextState extends State<TypingText> {
-  int _currentLength = 0;
-  bool _showCursor = true;
+  int _currentIndex = 0;
   Timer? _typingTimer;
-  Timer? _cursorTimer;
+  Timer? _blinkTimer;
+  bool _finished = false;
+  bool _showBlinkCursor = true;
 
   @override
   void initState() {
     super.initState();
     _startTyping();
-    _startCursor();
-  }
-
-  @override
-  void didUpdateWidget(covariant TypingText oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.text != widget.text) {
-      _typingTimer?.cancel();
-      setState(() {
-        _currentLength = 0;
-      });
-      _startTyping();
-    }
   }
 
   void _startTyping() {
     _typingTimer = Timer.periodic(widget.speed, (timer) {
-      if (_currentLength < widget.text.length) {
+      if (_currentIndex < widget.text.length) {
         setState(() {
-          _currentLength++;
+          _currentIndex++;
         });
       } else {
         _typingTimer?.cancel();
+        if (!_finished) {
+          _finished = true;
+          widget.onFinished?.call();
+          _startBlinking();
+        }
       }
     });
   }
 
-  void _startCursor() {
-    _cursorTimer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      setState(() {
-        _showCursor = !_showCursor;
+  void _startBlinking() {
+    if (widget.showCursor && widget.showCursorAtEnd) {
+      _blinkTimer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+        setState(() {
+          _showBlinkCursor = !_showBlinkCursor;
+        });
       });
-    });
+    }
   }
 
   @override
   void dispose() {
     _typingTimer?.cancel();
-    _cursorTimer?.cancel();
+    _blinkTimer?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final visibleText = widget.text.substring(0, _currentLength);
-    final isTyping = _currentLength < widget.text.length;
+    final isTyping = _currentIndex < widget.text.length;
+    final showCursor = widget.showCursor && (isTyping || (widget.showCursorAtEnd && !isTyping && _showBlinkCursor));
+    final text = widget.text.substring(0, _currentIndex);
+
     return RichText(
-      textAlign: widget.textAlign,
       text: TextSpan(
         style: widget.style,
         children: [
-          TextSpan(text: visibleText),
+          TextSpan(text: text),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
-            child:
-                isTyping
-                    ? Text(widget.cursor, style: widget.style)
-                    : Opacity(
-                      opacity: _showCursor ? 1.0 : 0.0,
-                      child: Text(widget.cursor, style: widget.style),
-                    ),
+            child: AnimatedOpacity(
+              opacity: showCursor ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 100),
+              child: Text(widget.cursor, style: widget.style?.copyWith(height: 1.0, fontSize: widget.style?.fontSize)),
+            ),
           ),
         ],
       ),
+      textAlign: widget.textAlign ?? TextAlign.start,
     );
   }
 }

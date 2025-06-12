@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 enum AppLanguage { pt, en }
 
 class AppStrings {
-  static final ValueNotifier<AppLanguage> currentLanguage =
-      ValueNotifier<AppLanguage>(AppLanguage.pt);
+  static final ValueNotifier<AppLanguage> currentLanguage = ValueNotifier<AppLanguage>(AppLanguage.pt);
 
   static const Map<AppLanguage, Map<String, String>> _localizedValues = {
     AppLanguage.pt: {
+      'themeMode': 'Tema',
       'appTitle': 'Meu App',
       'homeTitle': 'Início',
       'welcomeMessage':
@@ -20,9 +20,12 @@ Atualmente, foco no desenvolvimento de aplicativos mobile e web com Flutter, apr
       'technologies': 'Tecnologias e ferramentas que domino',
       'projects': 'Projetos',
       'contact': 'Contato',
+      'welcomecontact':
+          'Entre em contato\nFico à disposição para conversar sobre oportunidades, projetos ou colaborações. Preencha o formulário ou use os links abaixo para me contatar.',
     },
 
     AppLanguage.en: {
+      'themeMode': 'Theme',
       'appTitle': 'My App',
       'homeTitle': 'Home',
       'welcomeMessage':
