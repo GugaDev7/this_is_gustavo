@@ -10,14 +10,14 @@ class TextStyles {
 
   static const TextStyle subtitle = TextStyle(
     color: Colors.white,
-    fontSize: 23,
+    fontSize: 20,
     fontWeight: FontWeight.w100,
     fontFamily: 'ChunkFive',
   );
 
   static const TextStyle body = TextStyle(
     color: Colors.white,
-    fontSize: 23,
+    fontSize: 19,
     fontWeight: FontWeight.w100,
     fontFamily: 'ChunkFive',
   );
@@ -27,6 +27,13 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     fontFamily: 'ChunkFive',
     color: Colors.white,
+  );
+
+  static const TextStyle textFieldDark = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w100,
+    fontFamily: 'ChunkFive',
+    color: Colors.black,
   );
 
   static TextStyle presentation(double fontSize) =>

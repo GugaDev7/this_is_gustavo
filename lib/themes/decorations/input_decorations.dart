@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:this_is_gustavo/themes/colors.dart';
+import 'package:this_is_gustavo/themes/decorations/text_styles.dart';
 
 class GetInputDecoration {
   static InputDecoration getInputDecoration({
@@ -14,6 +15,7 @@ class GetInputDecoration {
     return InputDecoration(
       icon: icon != null ? Icon(icon) : null,
       hintText: label,
+      hintStyle: TextStyles.textFieldDark,
       fillColor: Colors.white,
       filled: true,
       contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),

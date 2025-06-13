@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/viewmodels/contact_viewmodel.dart';
-import '../../themes/decorations/input_decorations.dart';
 import '../../l10n/strings.dart';
 import '../../themes/decorations/appbar_decorations.dart';
 import '../../themes/decorations/drawer_decoration.dart';
 import '../../themes/decorations/text_styles.dart';
 import '../widgets/animated_wave_background.dart';
 import '../widgets/responsive_row_column.dart';
+import '../widgets/contact_form.dart';
+import '../widgets/contact_info.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
 
   Widget _buildWelcomeText(double width) =>
       Text(AppStrings.get('welcomecontact'), style: TextStyles.subtitle, textAlign: TextAlign.left);
+
+  Widget _buildLeftContent(double width) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [_buildWelcomeText(width), const ContactInfo()],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +48,8 @@ class ContactScreen extends StatelessWidget {
                             key: vm.formKey,
                             child: ResponsiveRowColumn(
                               useRow: canUseRow,
-                              left: _buildWelcomeText(screenWidth),
-                              right: _ContactForm(vm: vm),
+                              left: _buildLeftContent(screenWidth),
+                              right: ContactForm(vm: vm),
                               crossAxisAlignment: CrossAxisAlignment.start,
                             ),
                           ),
@@ -55,36 +63,6 @@ class ContactScreen extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class _ContactForm extends StatelessWidget {
-  final ContactViewModel vm;
-  const _ContactForm({required this.vm});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "Nome Completo"), onChanged: vm.setName),
-        const SizedBox(height: 8),
-        TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "E-mail"), onChanged: vm.setEmail),
-        const SizedBox(height: 8),
-        TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "Assunto"), onChanged: vm.setSubject),
-        const SizedBox(height: 8),
-        TextFormField(
-          minLines: 5,
-          maxLines: 5,
-          decoration: GetInputDecoration.getInputDecoration(label: "Mensagem"),
-          onChanged: vm.setMessage,
-        ),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: vm.isLoading ? null : vm.send,
-          child: vm.isLoading ? const CircularProgressIndicator() : Text(AppStrings.get('sendMessage')),
-        ),
-      ],
     );
   }
 }

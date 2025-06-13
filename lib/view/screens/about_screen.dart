@@ -10,7 +10,7 @@ class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
   Widget _buildAboutText(double screenWidth) => Padding(
-    padding: const EdgeInsets.only(left: 25.0, top: 58),
+    padding: const EdgeInsets.only(left: 25.0, top: 4),
     child: Text(AppStrings.get('aboutMessage'), style: TextStyles.body),
   );
 
