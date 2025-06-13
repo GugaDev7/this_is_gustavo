@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,
           themeMode: mode,
-          home: const HomeScreen(), // Tela inicial
+          home: const HomeScreen(),
         );
       },
     );

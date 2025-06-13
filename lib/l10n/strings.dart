@@ -21,7 +21,7 @@ Atualmente, foco no desenvolvimento de aplicativos mobile e web com Flutter, apr
       'projects': 'Projetos',
       'contact': 'Contato',
       'welcomecontact':
-          'Entre em contato\nFico à disposição para conversar sobre oportunidades, projetos ou colaborações. Preencha o formulário ou use os links abaixo para me contatar.',
+          'Entre em contato\nFico à disposição para conversar sobre oportunidades, projetos ou colaborações. \nPreencha o formulário ou use os links abaixo para me contatar.',
       'sendMessage': 'Enviar',
     },
 
@@ -40,7 +40,7 @@ Currently, I focus on building mobile and web applications with Flutter, while i
       'projects': 'Projects',
       'contact': 'Contact',
       'welcomecontact':
-          'Get in touch\nI am available to discuss opportunities, projects, or collaborations. Fill out the form or use the links below to contact me.',
+          'Get in touch\nI am available to discuss opportunities, projects, or collaborations. \nFill out the form or use the links below to contact me.',
       'sendMessage': 'Send',
     },
   };

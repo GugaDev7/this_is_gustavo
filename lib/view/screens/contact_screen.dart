@@ -1,59 +1,90 @@
 import 'package:flutter/material.dart';
-import 'package:this_is_gustavo/themes/decorations/input_decorations.dart';
-import 'package:this_is_gustavo/l10n/strings.dart';
-import 'package:this_is_gustavo/themes/decorations/appbar_decorations.dart';
-import 'package:this_is_gustavo/themes/decorations/drawer_decoration.dart';
-import 'package:this_is_gustavo/themes/decorations/text_styles.dart';
-import 'package:this_is_gustavo/view/widgets/animated_wave_background.dart';
+import 'package:provider/provider.dart';
+import '../../core/viewmodels/contact_viewmodel.dart';
+import '../../themes/decorations/input_decorations.dart';
+import '../../l10n/strings.dart';
+import '../../themes/decorations/appbar_decorations.dart';
+import '../../themes/decorations/drawer_decoration.dart';
+import '../../themes/decorations/text_styles.dart';
+import '../widgets/animated_wave_background.dart';
+import '../widgets/responsive_row_column.dart';
 
-class ContactScreen extends StatefulWidget {
+class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
 
-  @override
-  State<ContactScreen> createState() => _ContactScreenState();
-}
+  Widget _buildWelcomeText(double width) =>
+      Text(AppStrings.get('welcomecontact'), style: TextStyles.subtitle, textAlign: TextAlign.left);
 
-class _ContactScreenState extends State<ContactScreen> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final canUseRow = screenWidth > 1100;
-
-    return Scaffold(
-      appBar: AppBarDecorations.buildAppBar(context, showDrawer: !canUseRow),
-      body: Stack(
-        children: [
-          const AnimatedWaveBackground(angle: 170),
-          Padding(
-            padding: const EdgeInsets.only(left: 150, right: 150, top: 40, bottom: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(AppStrings.get('welcomecontact'), style: TextStyles.subtitle),
-                SizedBox(height: 25),
-                Column(
+    return ChangeNotifierProvider(
+      create: (_) => ContactViewModel(),
+      child: Consumer<ContactViewModel>(
+        builder: (context, vm, _) {
+          return ValueListenableBuilder<AppLanguage>(
+            valueListenable: AppStrings.currentLanguage,
+            builder: (context, lang, _) {
+              final screenWidth = MediaQuery.of(context).size.width;
+              final canUseRow = screenWidth > 1100;
+              return Scaffold(
+                appBar: AppBarDecorations.buildAppBar(context, showDrawer: !canUseRow),
+                drawer: !canUseRow ? const AppDrawer() : null,
+                body: Stack(
                   children: [
-                    TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "Nome Completo")),
-                    SizedBox(height: 8),
-                    TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "E-mail")),
-                    SizedBox(height: 8),
-                    TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "Assunto")),
-                    SizedBox(height: 8),
-                    TextFormField(
-                      minLines: 5,
-                      maxLines: 5,
-                      decoration: GetInputDecoration.getInputDecoration(label: "Mensagem"),
+                    const AnimatedWaveBackground(angle: 170),
+                    Center(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                          child: Form(
+                            key: vm.formKey,
+                            child: ResponsiveRowColumn(
+                              useRow: canUseRow,
+                              left: _buildWelcomeText(screenWidth),
+                              right: _ContactForm(vm: vm),
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    SizedBox(height: 20),
-                    ElevatedButton(onPressed: () {}, child: Text(AppStrings.get('sendMessage'))),
                   ],
                 ),
-              ],
-            ),
-          ),
-        ],
+              );
+            },
+          );
+        },
       ),
-      drawer: !canUseRow ? const AppDrawer() : null,
+    );
+  }
+}
+
+class _ContactForm extends StatelessWidget {
+  final ContactViewModel vm;
+  const _ContactForm({required this.vm});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "Nome Completo"), onChanged: vm.setName),
+        const SizedBox(height: 8),
+        TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "E-mail"), onChanged: vm.setEmail),
+        const SizedBox(height: 8),
+        TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "Assunto"), onChanged: vm.setSubject),
+        const SizedBox(height: 8),
+        TextFormField(
+          minLines: 5,
+          maxLines: 5,
+          decoration: GetInputDecoration.getInputDecoration(label: "Mensagem"),
+          onChanged: vm.setMessage,
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: vm.isLoading ? null : vm.send,
+          child: vm.isLoading ? const CircularProgressIndicator() : Text(AppStrings.get('sendMessage')),
+        ),
+      ],
     );
   }
 }
