@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
         final double portraitHeight =
             canUseRow ? screenWidth * 0.33 : screenWidth * 0.60;
         final double textWidth =
-            canUseRow ? screenWidth * 1.2 : screenWidth * 1.5;
+            canUseRow ? screenWidth * 0.9 : screenWidth * 1.5;
 
         return Scaffold(
           appBar: AppBarDecorations.buildAppBar(

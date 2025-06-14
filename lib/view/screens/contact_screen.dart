@@ -49,9 +49,11 @@ class ContactScreen extends StatelessWidget {
                     Center(
                       child: SingleChildScrollView(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 110,
-                            vertical: 20,
+                          padding: const EdgeInsets.only(
+                            left: 30,
+                            right: 100,
+                            top: 20,
+                            bottom: 20,
                           ),
                           child: Form(
                             key: vm.formKey,
