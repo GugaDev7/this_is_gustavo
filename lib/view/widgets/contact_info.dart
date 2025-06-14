@@ -3,8 +3,15 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../themes/decorations/text_styles.dart';
 import '../../l10n/strings.dart';
 
-class ContactInfo extends StatelessWidget {
+class ContactInfo extends StatefulWidget {
   const ContactInfo({super.key});
+
+  @override
+  State<ContactInfo> createState() => _ContactInfoState();
+}
+
+class _ContactInfoState extends State<ContactInfo> {
+  bool isHovering = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +30,36 @@ class ContactInfo extends StatelessWidget {
             const SizedBox(height: 8),
             _buildContactItem(Icons.location_on, 'Mamanguape, PB - Brasil'),
             const SizedBox(height: 8),
-            GestureDetector(
-              onTap: () => launchUrl(Uri.parse('https://www.linkedin.com/in/gustavo-rodrigues-167264361/')),
-              child: _buildContactItem(Icons.link, 'Linkedin'),
+            MouseRegion(
+              onEnter: (_) => setState(() => isHovering = true),
+              onExit: (_) => setState(() => isHovering = false),
+              cursor:
+                  isHovering
+                      ? SystemMouseCursors.click
+                      : SystemMouseCursors.basic,
+              child: GestureDetector(
+                onTap:
+                    () => launchUrl(
+                      Uri.parse(
+                        'https://www.linkedin.com/in/gustavo-rodrigues-167264361/',
+                      ),
+                    ),
+                child: _buildContactItem(Icons.link, "Meu Linkedin"),
+              ),
             ),
             const SizedBox(height: 8),
-            GestureDetector(
-              onTap: () => launchUrl(Uri.parse('https://github.com/GugaDev7')),
-              child: _buildContactItem(Icons.code, 'Github'),
+            MouseRegion(
+              onEnter: (_) => setState(() => isHovering = true),
+              onExit: (_) => setState(() => isHovering = false),
+              cursor:
+                  isHovering
+                      ? SystemMouseCursors.click
+                      : SystemMouseCursors.basic,
+              child: GestureDetector(
+                onTap:
+                    () => launchUrl(Uri.parse('https://github.com/GugaDev7')),
+                child: _buildContactItem(Icons.code, "Meu Github"),
+              ),
             ),
           ],
         );

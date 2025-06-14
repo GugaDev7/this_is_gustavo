@@ -17,13 +17,13 @@ class TextStyles {
 
   static const TextStyle body = TextStyle(
     color: Colors.white,
-    fontSize: 19,
+    fontSize: 20,
     fontWeight: FontWeight.w100,
     fontFamily: 'ChunkFive',
   );
 
   static const TextStyle caption = TextStyle(
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.w400,
     fontFamily: 'ChunkFive',
     color: Colors.white,
@@ -36,6 +36,10 @@ class TextStyles {
     color: Colors.black,
   );
 
-  static TextStyle presentation(double fontSize) =>
-      TextStyle(color: Colors.white, fontSize: fontSize, fontWeight: FontWeight.normal, fontFamily: 'ChunkFive');
+  static TextStyle presentation(double fontSize) => TextStyle(
+    color: Colors.white,
+    fontSize: fontSize,
+    fontWeight: FontWeight.normal,
+    fontFamily: 'ChunkFive',
+  );
 }

@@ -11,11 +11,22 @@ class ContactForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "Nome Completo"), onChanged: vm.setName),
+        TextFormField(
+          decoration: GetInputDecoration.getInputDecoration(
+            label: "Nome Completo",
+          ),
+          onChanged: vm.setName,
+        ),
         const SizedBox(height: 8),
-        TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "E-mail"), onChanged: vm.setEmail),
+        TextFormField(
+          decoration: GetInputDecoration.getInputDecoration(label: "E-mail"),
+          onChanged: vm.setEmail,
+        ),
         const SizedBox(height: 8),
-        TextFormField(decoration: GetInputDecoration.getInputDecoration(label: "Assunto"), onChanged: vm.setSubject),
+        TextFormField(
+          decoration: GetInputDecoration.getInputDecoration(label: "Assunto"),
+          onChanged: vm.setSubject,
+        ),
         const SizedBox(height: 8),
         TextFormField(
           minLines: 5,
@@ -26,7 +37,10 @@ class ContactForm extends StatelessWidget {
         const SizedBox(height: 20),
         ElevatedButton(
           onPressed: vm.isLoading ? null : vm.send,
-          child: vm.isLoading ? const CircularProgressIndicator() : Text(AppStrings.get('sendMessage')),
+          child:
+              vm.isLoading
+                  ? const CircularProgressIndicator()
+                  : Text(AppStrings.get('sendMessage')),
         ),
       ],
     );

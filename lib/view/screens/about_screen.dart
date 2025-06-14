@@ -6,12 +6,43 @@ import 'package:this_is_gustavo/themes/decorations/text_styles.dart';
 import 'package:this_is_gustavo/view/widgets/animated_wave_background.dart';
 import 'package:this_is_gustavo/view/widgets/responsive_row_column.dart';
 
-class AboutScreen extends StatelessWidget {
+class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
 
+  @override
+  State<AboutScreen> createState() => _AboutScreenState();
+}
+
+class _AboutScreenState extends State<AboutScreen> {
+  bool _show = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(microseconds: 300), () {
+      setState(() {
+        _show = true;
+      });
+    });
+  }
+
+  final Color containerColor = const Color.fromARGB(32, 245, 245, 245);
+
   Widget _buildAboutText(double screenWidth) => Padding(
-    padding: const EdgeInsets.only(left: 25.0, top: 4),
-    child: Text(AppStrings.get('aboutMessage'), style: TextStyles.body),
+    padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 40),
+    child: AnimatedSlide(
+      offset: _show ? Offset.zero : const Offset(-1.5, 0),
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.easeOut,
+      child: Container(
+        decoration: BoxDecoration(
+          color: containerColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        padding: const EdgeInsets.all(10),
+        child: Text(AppStrings.get('aboutMessage'), style: TextStyles.body),
+      ),
+    ),
   );
 
   Widget _buildTechList() {
@@ -39,16 +70,39 @@ class AboutScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTechColumn() => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 25.0, top: 40),
-        child: Text(AppStrings.get('technologies'), style: TextStyles.body),
+  Widget _buildTechColumn() => Padding(
+    padding: const EdgeInsets.only(left: 25, right: 20, top: 40, bottom: 40),
+    child: AnimatedSlide(
+      offset: _show ? Offset.zero : const Offset(1.5, 0),
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.easeOut,
+      child: Container(
+        decoration: BoxDecoration(
+          color: containerColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 25.0,
+                vertical: 20,
+              ),
+              child: Text(
+                AppStrings.get('technologies'),
+                style: TextStyles.body,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: _buildTechList(),
+            ),
+          ],
+        ),
       ),
-      const SizedBox(height: 16),
-      Padding(padding: const EdgeInsets.only(left: 25.0), child: _buildTechList()),
-    ],
+    ),
   );
 
   @override
@@ -60,14 +114,17 @@ class AboutScreen extends StatelessWidget {
         final canUseRow = screenWidth > 1100;
 
         return Scaffold(
-          appBar: AppBarDecorations.buildAppBar(context, showDrawer: !canUseRow),
+          appBar: AppBarDecorations.buildAppBar(
+            context,
+            showDrawer: !canUseRow,
+          ),
           drawer: !canUseRow ? const AppDrawer() : null,
           body: Stack(
             children: [
               const AnimatedWaveBackground(angle: 170),
               SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(5),
                   child: Center(
                     child: ResponsiveRowColumn(
                       useRow: canUseRow,

@@ -16,8 +16,10 @@ class HomeScreen extends StatelessWidget {
     textAlign: isRow ? TextAlign.right : TextAlign.center,
   );
 
-  Widget _buildPortrait(double portraitHeight) =>
-      Image.asset('assets/images/Portrait_Placeholder.png', height: portraitHeight.clamp(180, 580));
+  Widget _buildPortrait(double portraitHeight) => Image.asset(
+    'assets/images/Portrait_Placeholder.png',
+    height: portraitHeight.clamp(180, 580),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,16 @@ class HomeScreen extends StatelessWidget {
       builder: (context, lang, _) {
         final screenWidth = MediaQuery.of(context).size.width;
         final canUseRow = screenWidth > 1100;
-        final double portraitHeight = canUseRow ? screenWidth * 0.33 : screenWidth * 0.55;
-        final double textWidth = canUseRow ? screenWidth * 1.2 : screenWidth * 1.5;
+        final double portraitHeight =
+            canUseRow ? screenWidth * 0.33 : screenWidth * 0.60;
+        final double textWidth =
+            canUseRow ? screenWidth * 1.2 : screenWidth * 1.5;
 
         return Scaffold(
-          appBar: AppBarDecorations.buildAppBar(context, showDrawer: !canUseRow),
+          appBar: AppBarDecorations.buildAppBar(
+            context,
+            showDrawer: !canUseRow,
+          ),
           drawer: !canUseRow ? const AppDrawer() : null,
           body: Stack(
             children: [
@@ -45,7 +52,10 @@ class HomeScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 25.0, right: 25.0),
                         child: _buildWelcomeText(textWidth, canUseRow),
                       ),
-                      right: Padding(padding: const EdgeInsets.all(5.0), child: _buildPortrait(portraitHeight)),
+                      right: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: _buildPortrait(portraitHeight),
+                      ),
                       crossAxisAlignment: CrossAxisAlignment.center,
                     ),
                   ),

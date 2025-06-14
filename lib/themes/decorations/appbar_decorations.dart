@@ -47,13 +47,17 @@ class AppBarDecorations {
               'assets/icons/bulb.svg',
               height: 90,
               colorFilter: ColorFilter.mode(
-                Theme.of(context).brightness == Brightness.dark ? Colors.yellow : Colors.white,
+                Theme.of(context).brightness == Brightness.dark
+                    ? Colors.yellow
+                    : Colors.white,
                 BlendMode.srcIn,
               ),
             ),
             onTap: () {
               themeModeNotifier.value =
-                  Theme.of(context).brightness == Brightness.dark ? ThemeMode.light : ThemeMode.dark;
+                  Theme.of(context).brightness == Brightness.dark
+                      ? ThemeMode.light
+                      : ThemeMode.dark;
             },
           ),
         ],
@@ -77,32 +81,49 @@ class AppBarDecorations {
                             if (showTexts) ...[
                               TextButton(
                                 onPressed: () {
-                                  if (ModalRoute.of(context)?.settings.name != '/home') {
-                                    navigateWithFade(context, HomeScreen(), routeName: '/home');
+                                  if (ModalRoute.of(context)?.settings.name !=
+                                      '/home') {
+                                    navigateWithFade(
+                                      context,
+                                      HomeScreen(),
+                                      routeName: '/home',
+                                    );
                                   }
                                 },
-                                child: Text(AppStrings.get('homeTitle'), style: TextStyles.title),
+                                child: Text(
+                                  AppStrings.get('homeTitle'),
+                                  style: TextStyles.title,
+                                ),
                               ),
                               SizedBox(width: 16),
                               TextButton(
                                 onPressed: () {
                                   navigateWithFade(context, AboutScreen());
                                 },
-                                child: Text(AppStrings.get('aboutMe'), style: TextStyles.title),
+                                child: Text(
+                                  AppStrings.get('aboutMe'),
+                                  style: TextStyles.title,
+                                ),
                               ),
                               SizedBox(width: 16),
                               TextButton(
                                 onPressed: () {
                                   navigateWithFade(context, ProjectsScreen());
                                 },
-                                child: Text(AppStrings.get('projects'), style: TextStyles.title),
+                                child: Text(
+                                  AppStrings.get('projects'),
+                                  style: TextStyles.title,
+                                ),
                               ),
                               SizedBox(width: 16),
                               TextButton(
                                 onPressed: () {
                                   navigateWithFade(context, ContactScreen());
                                 },
-                                child: Text(AppStrings.get('contact'), style: TextStyles.title),
+                                child: Text(
+                                  AppStrings.get('contact'),
+                                  style: TextStyles.title,
+                                ),
                               ),
                               SizedBox(width: 32),
                             ],
@@ -111,24 +132,33 @@ class AppBarDecorations {
                               iconSize: iconSize,
                               color: Colors.white,
                               icon: Icon(
-                                Theme.of(context).brightness == Brightness.dark ? Icons.dark_mode : Icons.light_mode,
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Icons.dark_mode
+                                    : Icons.light_mode,
                               ),
                               onPressed: () {
                                 themeModeNotifier.value =
-                                    Theme.of(context).brightness == Brightness.dark ? ThemeMode.light : ThemeMode.dark;
+                                    Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? ThemeMode.light
+                                        : ThemeMode.dark;
                               },
                             ),
                             // Botão de alternar idioma
                             IconButton(
                               iconSize: iconSize,
                               icon: Image.asset(
-                                lang == AppLanguage.pt ? 'assets/icons/br.png' : 'assets/icons/us.png',
+                                lang == AppLanguage.pt
+                                    ? 'assets/icons/br.png'
+                                    : 'assets/icons/us.png',
                                 width: 24,
                                 height: 24,
                               ),
                               onPressed: () {
                                 AppStrings.currentLanguage.value =
-                                    lang == AppLanguage.pt ? AppLanguage.en : AppLanguage.pt;
+                                    lang == AppLanguage.pt
+                                        ? AppLanguage.en
+                                        : AppLanguage.pt;
                               },
                             ),
                             SizedBox(width: 30),
