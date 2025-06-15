@@ -16,10 +16,12 @@ class HomeScreen extends StatelessWidget {
     textAlign: isRow ? TextAlign.right : TextAlign.center,
   );
 
-  Widget _buildPortrait(double portraitHeight) => Image.asset(
-    'assets/images/Portrait_Placeholder.png',
-    height: portraitHeight.clamp(180, 580),
-  );
+  Widget _buildPortrait(double portraitHeight, double portraitWidth) =>
+      Image.asset(
+        'assets/images/Portrait_Placeholder.png',
+        height: portraitHeight.clamp(180, 800),
+        width: portraitWidth.clamp(180, 800),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,8 @@ class HomeScreen extends StatelessWidget {
             canUseRow ? screenWidth * 0.33 : screenWidth * 0.60;
         final double textWidth =
             canUseRow ? screenWidth * 0.9 : screenWidth * 1.5;
+        final double portraitWidth =
+            canUseRow ? screenWidth * 0.33 : screenWidth * 0.60;
 
         return Scaffold(
           appBar: AppBarDecorations.buildAppBar(
@@ -49,12 +53,12 @@ class HomeScreen extends StatelessWidget {
                     child: ResponsiveRowColumn(
                       useRow: canUseRow,
                       left: Padding(
-                        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                         child: _buildWelcomeText(textWidth, canUseRow),
                       ),
                       right: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: _buildPortrait(portraitHeight),
+                        padding: const EdgeInsets.all(1.0),
+                        child: _buildPortrait(portraitHeight, portraitWidth),
                       ),
                       crossAxisAlignment: CrossAxisAlignment.center,
                     ),

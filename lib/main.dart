@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:this_is_gustavo/view/screens/about_screen.dart';
 import 'themes/app_themes.dart';
 import 'view/screens/home_screen.dart';
-import 'view/screens/contact_screen.dart';
-import 'view/screens/projects_screen.dart';
-import 'view/screens/about_screen.dart';
 
 // Notificador global para alternar o tema
 final themeModeNotifier = ValueNotifier(ThemeMode.light);

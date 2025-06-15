@@ -9,6 +9,8 @@ class ContactForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Column(
       children: [
         TextFormField(
@@ -40,7 +42,12 @@ class ContactForm extends StatelessWidget {
           child:
               vm.isLoading
                   ? const CircularProgressIndicator()
-                  : Text(AppStrings.get('sendMessage')),
+                  : Text(
+                    AppStrings.get('sendMessage'),
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
         ),
       ],
     );

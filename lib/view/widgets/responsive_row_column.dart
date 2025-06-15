@@ -21,8 +21,15 @@ class ResponsiveRowColumn extends StatelessWidget {
     return useRow
         ? Row(
           crossAxisAlignment: crossAxisAlignment,
-          children: [Expanded(child: left), SizedBox(width: spacing), SizedBox(width: 400, child: right)],
+          children: [
+            Expanded(child: left),
+            SizedBox(width: spacing),
+            SizedBox(width: 450, child: right),
+          ],
         )
-        : Column(crossAxisAlignment: crossAxisAlignment, children: [right, SizedBox(height: spacing / 2), left]);
+        : Column(
+          crossAxisAlignment: crossAxisAlignment,
+          children: [right, SizedBox(height: spacing / 2), left],
+        );
   }
 }
