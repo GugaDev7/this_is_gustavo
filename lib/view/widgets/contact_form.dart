@@ -19,12 +19,28 @@ class _ContactFormState extends State<ContactForm> {
   final _messageController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    widget.vm.addListener(_onViewModelChanged);
+  }
+
+  @override
   void dispose() {
+    widget.vm.removeListener(_onViewModelChanged);
     _nameController.dispose();
     _emailController.dispose();
     _subjectController.dispose();
     _messageController.dispose();
     super.dispose();
+  }
+
+  void _onViewModelChanged() {
+    if (!widget.vm.isLoading && widget.vm.model.name.isEmpty) {
+      _nameController.clear();
+      _emailController.clear();
+      _subjectController.clear();
+      _messageController.clear();
+    }
   }
 
   String? _validateEmail(String? value) {
@@ -55,10 +71,7 @@ class _ContactFormState extends State<ContactForm> {
         children: [
           TextFormField(
             controller: _nameController,
-            decoration: GetInputDecoration.getInputDecoration(
-              label: AppStrings.get('name'),
-              icon: Icons.person,
-            ),
+            decoration: GetInputDecoration.getInputDecoration(label: AppStrings.get('name'), icon: Icons.person),
             validator: _validateRequired,
             onChanged: widget.vm.setName,
             textInputAction: TextInputAction.next,
@@ -66,10 +79,7 @@ class _ContactFormState extends State<ContactForm> {
           const SizedBox(height: 8),
           TextFormField(
             controller: _emailController,
-            decoration: GetInputDecoration.getInputDecoration(
-              label: AppStrings.get('email'),
-              icon: Icons.email,
-            ),
+            decoration: GetInputDecoration.getInputDecoration(label: AppStrings.get('email'), icon: Icons.email),
             validator: _validateEmail,
             onChanged: widget.vm.setEmail,
             keyboardType: TextInputType.emailAddress,
@@ -78,10 +88,7 @@ class _ContactFormState extends State<ContactForm> {
           const SizedBox(height: 8),
           TextFormField(
             controller: _subjectController,
-            decoration: GetInputDecoration.getInputDecoration(
-              label: AppStrings.get('subject'),
-              icon: Icons.subject,
-            ),
+            decoration: GetInputDecoration.getInputDecoration(label: AppStrings.get('subject'), icon: Icons.subject),
             validator: _validateRequired,
             onChanged: widget.vm.setSubject,
             textInputAction: TextInputAction.next,
@@ -91,10 +98,7 @@ class _ContactFormState extends State<ContactForm> {
             controller: _messageController,
             minLines: 5,
             maxLines: 5,
-            decoration: GetInputDecoration.getInputDecoration(
-              label: AppStrings.get('message'),
-              icon: Icons.message,
-            ),
+            decoration: GetInputDecoration.getInputDecoration(label: AppStrings.get('message'), icon: Icons.message),
             validator: _validateRequired,
             onChanged: widget.vm.setMessage,
             textInputAction: TextInputAction.newline,
@@ -107,17 +111,26 @@ class _ContactFormState extends State<ContactForm> {
                     ? null
                     : () {
                       if (_formKey.currentState?.validate() ?? false) {
-                        widget.vm.send();
+                        widget.vm.send(context);
                       }
                     },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: isDarkMode ? Colors.white : Colors.white,
+              disabledBackgroundColor: isDarkMode ? Colors.white : Colors.white,
+            ),
             child:
                 widget.vm.isLoading
-                    ? const CircularProgressIndicator()
+                    ? SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(isDarkMode ? Colors.black : Colors.black),
+                      ),
+                    )
                     : Text(
                       AppStrings.get('sendMessage'),
-                      style: TextStyle(
-                        color: isDarkMode ? Colors.white : Colors.black,
-                      ),
+                      style: TextStyle(color: isDarkMode ? Colors.black : Colors.black),
                     ),
           ),
         ],

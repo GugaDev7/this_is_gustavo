@@ -11,6 +11,8 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+lib/core/config/emailjs_config.dart
+
 
 # IntelliJ related
 *.iml

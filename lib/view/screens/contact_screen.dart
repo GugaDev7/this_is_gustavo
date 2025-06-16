@@ -13,11 +13,8 @@ import '../widgets/contact_info.dart';
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
 
-  Widget _buildWelcomeText(double width) => Text(
-    AppStrings.get('welcomecontact'),
-    style: TextStyles.subtitle,
-    textAlign: TextAlign.left,
-  );
+  Widget _buildWelcomeText(double width) =>
+      Text(AppStrings.get('welcomecontact'), style: TextStyles.subtitle, textAlign: TextAlign.left);
 
   Widget _buildLeftContent(double width) {
     return Column(
@@ -38,10 +35,7 @@ class ContactScreen extends StatelessWidget {
               final screenWidth = MediaQuery.of(context).size.width;
               final canUseRow = screenWidth > 1100;
               return Scaffold(
-                appBar: AppBarDecorations.buildAppBar(
-                  context,
-                  showDrawer: !canUseRow,
-                ),
+                appBar: AppBarDecorations.buildAppBar(context, showDrawer: !canUseRow),
                 drawer: !canUseRow ? const AppDrawer() : null,
                 body: Stack(
                   children: [
@@ -49,24 +43,12 @@ class ContactScreen extends StatelessWidget {
                     Center(
                       child: SingleChildScrollView(
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 30,
-                            right: 100,
-                            top: 20,
-                            bottom: 20,
-                          ),
+                          padding: const EdgeInsets.only(left: 30, right: 100, top: 20, bottom: 20),
                           child: Form(
-                            key: vm.formKey,
                             child: ResponsiveRowColumn(
                               useRow: canUseRow,
-                              left:
-                                  canUseRow
-                                      ? _buildLeftContent(screenWidth)
-                                      : ContactForm(vm: vm),
-                              right:
-                                  canUseRow
-                                      ? ContactForm(vm: vm)
-                                      : _buildLeftContent(screenWidth),
+                              left: canUseRow ? _buildLeftContent(screenWidth) : ContactForm(vm: vm),
+                              right: canUseRow ? ContactForm(vm: vm) : _buildLeftContent(screenWidth),
                               crossAxisAlignment: CrossAxisAlignment.start,
                             ),
                           ),
