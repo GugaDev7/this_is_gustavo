@@ -33,32 +33,20 @@ class _ContactInfoState extends State<ContactInfo> {
             MouseRegion(
               onEnter: (_) => setState(() => isHovering = true),
               onExit: (_) => setState(() => isHovering = false),
-              cursor:
-                  isHovering
-                      ? SystemMouseCursors.click
-                      : SystemMouseCursors.basic,
+              cursor: isHovering ? SystemMouseCursors.click : SystemMouseCursors.basic,
               child: GestureDetector(
-                onTap:
-                    () => launchUrl(
-                      Uri.parse(
-                        'https://www.linkedin.com/in/gustavo-rodrigues-167264361/',
-                      ),
-                    ),
-                child: _buildContactItem(Icons.link, "Meu Linkedin"),
+                onTap: () => launchUrl(Uri.parse('https://www.linkedin.com/in/gustavo-rodrigues-167264361/')),
+                child: _buildContactItem(Icons.link, "Linkedin"),
               ),
             ),
             const SizedBox(height: 8),
             MouseRegion(
               onEnter: (_) => setState(() => isHovering = true),
               onExit: (_) => setState(() => isHovering = false),
-              cursor:
-                  isHovering
-                      ? SystemMouseCursors.click
-                      : SystemMouseCursors.basic,
+              cursor: isHovering ? SystemMouseCursors.click : SystemMouseCursors.basic,
               child: GestureDetector(
-                onTap:
-                    () => launchUrl(Uri.parse('https://github.com/GugaDev7')),
-                child: _buildContactItem(Icons.code, "Meu Github"),
+                onTap: () => launchUrl(Uri.parse('https://github.com/GugaDev7')),
+                child: _buildContactItem(Icons.code, "Github"),
               ),
             ),
           ],

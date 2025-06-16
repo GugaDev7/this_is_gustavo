@@ -3,8 +3,12 @@ import '../../core/viewmodels/contact_viewmodel.dart';
 import '../../themes/decorations/input_decorations.dart';
 import '../../l10n/strings.dart';
 
+/// Widget que representa o formulário de contato.
+/// Responsável por coletar e validar os dados do usuário.
 class ContactForm extends StatefulWidget {
+  /// ViewModel que gerencia o estado e a lógica do formulário
   final ContactViewModel vm;
+
   const ContactForm({super.key, required this.vm});
 
   @override
@@ -12,7 +16,10 @@ class ContactForm extends StatefulWidget {
 }
 
 class _ContactFormState extends State<ContactForm> {
+  /// Chave global para validação do formulário
   final _formKey = GlobalKey<FormState>();
+
+  /// Controladores para os campos de texto
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _subjectController = TextEditingController();
@@ -34,6 +41,7 @@ class _ContactFormState extends State<ContactForm> {
     super.dispose();
   }
 
+  /// Callback chamado quando o ViewModel é atualizado
   void _onViewModelChanged() {
     if (!widget.vm.isLoading && widget.vm.model.name.isEmpty) {
       _nameController.clear();
@@ -43,6 +51,7 @@ class _ContactFormState extends State<ContactForm> {
     }
   }
 
+  /// Valida se o email está em um formato válido
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return AppStrings.get('emailRequired');
@@ -54,6 +63,7 @@ class _ContactFormState extends State<ContactForm> {
     return null;
   }
 
+  /// Valida se o campo é obrigatório
   String? _validateRequired(String? value) {
     if (value == null || value.isEmpty) {
       return AppStrings.get('fieldRequired');

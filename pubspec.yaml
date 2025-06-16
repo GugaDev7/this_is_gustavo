@@ -1,5 +1,5 @@
 name: this_is_gustavo
-description: "A new Flutter project."
+description: "Portfolio pessoal desenvolvido em Flutter para mostrar projetos e habilidades."
 publish_to: 'none' 
 
 version: 1.0.0+1
@@ -16,7 +16,6 @@ dependencies:
   provider: ^6.1.5
   url_launcher: ^6.2.5
   http: ^1.4.0
-  emailjs: ^4.0.0
 
 dev_dependencies:
   flutter_test:

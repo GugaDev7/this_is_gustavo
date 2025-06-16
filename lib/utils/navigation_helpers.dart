@@ -15,10 +15,7 @@ void navigateWithSlide(
     transitionsBuilder: (_, animation, __, child) {
       final begin = Offset(toLeft ? 1.0 : -1.0, 0.0);
       final end = Offset.zero;
-      final tween = Tween(
-        begin: begin,
-        end: end,
-      ).chain(CurveTween(curve: Curves.ease));
+      final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: Curves.ease));
       return SlideTransition(position: animation.drive(tween), child: child);
     },
   );
@@ -33,12 +30,7 @@ void navigateWithSlide(
   }
 }
 
-void navigateWithFade(
-  BuildContext context,
-  Widget page, {
-  bool pop = false,
-  String? routeName,
-}) {
+void navigateWithFade(BuildContext context, Widget page, {bool pop = false, String? routeName}) {
   final route = PageRouteBuilder(
     settings: routeName != null ? RouteSettings(name: routeName) : null,
     pageBuilder: (_, __, ___) => AppScaffold(child: page),

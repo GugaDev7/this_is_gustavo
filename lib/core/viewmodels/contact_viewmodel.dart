@@ -4,30 +4,42 @@ import 'package:http/http.dart' as http;
 import '../models/contact_model.dart';
 import '../config/emailjs_config.dart';
 
+/// ViewModel responsável por gerenciar o estado e a lógica do formulário de contato.
+/// Implementa o padrão MVVM (Model-View-ViewModel) para separar a lógica de negócios da interface.
 class ContactViewModel extends ChangeNotifier {
+  /// Modelo de dados que armazena as informações do formulário
   final model = ContactModel();
+
+  /// Flag que indica se o formulário está em processo de envio
   bool isLoading = false;
 
+  /// Atualiza o nome no modelo e notifica os listeners
   void setName(String value) {
     model.name = value;
     notifyListeners();
   }
 
+  /// Atualiza o email no modelo e notifica os listeners
   void setEmail(String value) {
     model.email = value;
     notifyListeners();
   }
 
+  /// Atualiza o assunto no modelo e notifica os listeners
   void setSubject(String value) {
     model.subject = value;
     notifyListeners();
   }
 
+  /// Atualiza a mensagem no modelo e notifica os listeners
   void setMessage(String value) {
     model.message = value;
     notifyListeners();
   }
 
+  /// Envia os dados do formulário para o servidor
+  ///
+  /// [context] é usado para mostrar feedback visual ao usuário
   Future<void> send(BuildContext context) async {
     isLoading = true;
     notifyListeners();
@@ -69,6 +81,10 @@ class ContactViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Mostra uma SnackBar com feedback visual para o usuário
+  ///
+  /// [scaffoldMessenger] é usado para mostrar a SnackBar
+  /// [message] é a mensagem a ser exibida
   void _showSnackBar(ScaffoldMessengerState scaffoldMessenger, String message) {
     final isSuccess = message.contains('sucesso');
     scaffoldMessenger.showSnackBar(
@@ -76,6 +92,7 @@ class ContactViewModel extends ChangeNotifier {
     );
   }
 
+  /// Limpa todos os campos do formulário
   void _clearFields() {
     model.name = '';
     model.email = '';
