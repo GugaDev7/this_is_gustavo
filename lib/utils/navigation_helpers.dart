@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:this_is_gustavo/core/app_scaffold.dart';
 
 void navigateWithSlide(
   BuildContext context,
@@ -9,7 +10,7 @@ void navigateWithSlide(
 }) {
   final route = PageRouteBuilder(
     settings: routeName != null ? RouteSettings(name: routeName) : null,
-    pageBuilder: (_, __, ___) => page,
+    pageBuilder: (_, __, ___) => AppScaffold(child: page),
     transitionDuration: const Duration(milliseconds: 1000),
     transitionsBuilder: (_, animation, __, child) {
       final begin = Offset(toLeft ? 1.0 : -1.0, 0.0);
@@ -40,7 +41,7 @@ void navigateWithFade(
 }) {
   final route = PageRouteBuilder(
     settings: routeName != null ? RouteSettings(name: routeName) : null,
-    pageBuilder: (_, __, ___) => page,
+    pageBuilder: (_, __, ___) => AppScaffold(child: page),
     transitionDuration: const Duration(milliseconds: 600),
     transitionsBuilder: (_, animation, __, child) {
       return FadeTransition(opacity: animation, child: child);

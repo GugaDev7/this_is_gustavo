@@ -51,6 +51,13 @@ Sou movido por desafios e estou sempre em busca de aprimorar minhas habilidades 
       'welcomecontact':
           'Entre em contato\nFico à disposição para conversar sobre oportunidades, projetos ou colaborações. \nPreencha o formulário ou use os links abaixo para me contatar.',
       'sendMessage': 'Enviar',
+      'name': 'Nome Completo',
+      'email': 'E-mail',
+      'subject': 'Assunto',
+      'message': 'Mensagem',
+      'fieldRequired': 'Este campo é obrigatório',
+      'emailRequired': 'O e-mail é obrigatório',
+      'invalidEmail': 'Por favor, insira um e-mail válido',
     },
 
     AppLanguage.en: {
@@ -91,6 +98,13 @@ Driven by challenges, I continuously seek to enhance my technical skills, produc
       'welcomecontact':
           '''Get in touch\nI'm available to discuss opportunities, projects, or collaborations. \nFill out the form or use the links below to reach out.''',
       'sendMessage': 'Send',
+      'name': 'Full Name',
+      'email': 'Email',
+      'subject': 'Subject',
+      'message': 'Message',
+      'fieldRequired': 'This field is required',
+      'emailRequired': 'Email is required',
+      'invalidEmail': 'Please enter a valid email',
     },
   };
 

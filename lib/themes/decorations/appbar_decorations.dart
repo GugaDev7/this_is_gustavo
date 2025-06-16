@@ -10,9 +10,31 @@ import 'package:this_is_gustavo/view/screens/home_screen.dart';
 import 'package:this_is_gustavo/view/screens/projects_screen.dart';
 
 class AppBarDecorations {
+  static void navigateToNextPage(BuildContext context) {
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+
+    switch (currentRoute) {
+      case '/home':
+        navigateWithFade(context, AboutScreen(), routeName: '/about');
+        break;
+      case '/about':
+        navigateWithFade(context, ProjectsScreen(), routeName: '/projects');
+        break;
+      case '/projects':
+        navigateWithFade(context, ContactScreen(), routeName: '/contact');
+        break;
+      case '/contact':
+        navigateWithFade(context, HomeScreen(), routeName: '/home');
+        break;
+      default:
+        navigateWithFade(context, HomeScreen(), routeName: '/home');
+    }
+  }
+
   static AppBar buildAppBar(BuildContext context, {bool showDrawer = false}) {
     final iconSize = 30.0;
-    final isMobile = MediaQuery.of(context).size.width < 600;
+    final isMobile = MediaQuery.of(context).size.width < 1000;
+
     return AppBar(
       automaticallyImplyLeading: false,
       toolbarHeight: 100,
@@ -35,7 +57,10 @@ class AppBarDecorations {
         children: [
           // Logo
           GestureDetector(
-            child: SvgPicture.asset('assets/images/logo.svg'),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: SvgPicture.asset('assets/images/logo.svg'),
+            ),
             onTap: () {
               if (ModalRoute.of(context)?.settings.name != '/home') {
                 navigateWithFade(context, HomeScreen(), routeName: '/home');
@@ -45,14 +70,17 @@ class AppBarDecorations {
           SizedBox(width: 8),
           // Ícone de tema
           GestureDetector(
-            child: SvgPicture.asset(
-              'assets/icons/bulb.svg',
-              height: 90,
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).brightness == Brightness.dark
-                    ? Colors.yellow
-                    : Colors.white,
-                BlendMode.srcIn,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: SvgPicture.asset(
+                'assets/icons/bulb.svg',
+                height: 90,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).brightness == Brightness.dark
+                      ? Colors.yellow
+                      : Colors.white,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
             onTap: () {
@@ -129,41 +157,46 @@ class AppBarDecorations {
                               ),
                               SizedBox(width: 32),
                             ],
-                            // Botão de alternar tema
-                            IconButton(
-                              iconSize: iconSize,
-                              color: Colors.white,
-                              icon: Icon(
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Icons.dark_mode
-                                    : Icons.light_mode,
-                              ),
-                              onPressed: () {
-                                themeModeNotifier.value =
+                            // Botões de ação (tema, idioma e navegação)
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  iconSize: iconSize,
+                                  color: Colors.white,
+                                  icon: Icon(
                                     Theme.of(context).brightness ==
                                             Brightness.dark
-                                        ? ThemeMode.light
-                                        : ThemeMode.dark;
-                              },
-                            ),
-                            // Botão de alternar idioma
-                            IconButton(
-                              iconSize: iconSize,
-                              icon: Image.asset(
-                                lang == AppLanguage.pt
-                                    ? 'assets/icons/br.png'
-                                    : 'assets/icons/us.png',
-                                width: 24,
-                                height: 24,
-                              ),
-                              onPressed: () {
-                                AppStrings.currentLanguage.value =
+                                        ? Icons.dark_mode
+                                        : Icons.light_mode,
+                                  ),
+                                  onPressed: () {
+                                    themeModeNotifier.value =
+                                        Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? ThemeMode.light
+                                            : ThemeMode.dark;
+                                  },
+                                ),
+                                IconButton(
+                                  iconSize: iconSize,
+                                  icon: Image.asset(
                                     lang == AppLanguage.pt
-                                        ? AppLanguage.en
-                                        : AppLanguage.pt;
-                              },
+                                        ? 'assets/icons/br.png'
+                                        : 'assets/icons/us.png',
+                                    width: 24,
+                                    height: 24,
+                                  ),
+                                  onPressed: () {
+                                    AppStrings.currentLanguage.value =
+                                        lang == AppLanguage.pt
+                                            ? AppLanguage.en
+                                            : AppLanguage.pt;
+                                  },
+                                ),
+                                SizedBox(width: 30),
+                              ],
                             ),
-                            SizedBox(width: 30),
                           ],
                         );
                       },

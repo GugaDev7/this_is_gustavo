@@ -13,8 +13,10 @@ class GetInputDecoration {
     Color? fillColor,
   }) {
     return InputDecoration(
-      icon: icon != null ? Icon(icon) : null,
-      hintText: label,
+      icon: icon != null ? Icon(icon, color: Colors.white) : null,
+      labelText: label,
+      labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      hintText: hint,
       hintStyle: TextStyles.textFieldDark,
       fillColor: Colors.white,
       filled: true,
