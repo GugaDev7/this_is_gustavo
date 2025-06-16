@@ -12,6 +12,7 @@ import 'package:this_is_gustavo/view/screens/projects_screen.dart';
 class AppBarDecorations {
   static AppBar buildAppBar(BuildContext context, {bool showDrawer = false}) {
     final iconSize = 30.0;
+    final isMobile = MediaQuery.of(context).size.width < 600;
     return AppBar(
       automaticallyImplyLeading: false,
       toolbarHeight: 100,
@@ -29,7 +30,8 @@ class AppBarDecorations {
               )
               : null,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment:
+            isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
         children: [
           // Logo
           GestureDetector(

@@ -17,26 +17,23 @@ class ProjectsScreen extends StatelessWidget {
         final screenWidth = MediaQuery.of(context).size.width;
         final canUseRow = screenWidth > 1100;
         final crossAxisCount =
-            canUseRow ? 3 : 1; // 3 colunas no desktop, 1 no mobile
-
+            canUseRow ? 2 : 1; // 3 colunas no desktop, 1 no mobile
+        final childAspectRatio = canUseRow ? 1.15 : 1.1;
+        final isMobile = screenWidth < 600;
         final projects = [
           {
-            'image': 'assets/images/logo.png',
-            'name': 'Projeto 1',
-            'description': 'Descrição do Projeto 1',
-            'link': 'https://github.com/projeto1',
+            'image': 'assets/images/projects/thisisgustavo.png',
+            'name': 'This is Gustavo',
+            'description': '${AppStrings.get('thisIsGustavoDescription')}',
+            'link': 'https://this-is-gustavo.vercel.app/',
+            'link2': 'https://github.com/GugaDev7/this_is_gustavo',
           },
           {
-            'image': 'assets/images/logo.png',
-            'name': 'Projeto 2',
-            'description': 'Descrição do Projeto 2',
-            'link': 'https://github.com/projeto2',
-          },
-          {
-            'image': 'assets/images/logo.png',
-            'name': 'Projeto 3',
-            'description': 'Descrição do Projeto 3',
-            'link': 'https://github.com/projeto3',
+            'image': 'assets/images/projects/easytasks.png',
+            'name': 'EasyTasks',
+            'description': '${AppStrings.get('easyTasksDescription')}',
+            'link': 'https://easy-tasks-gsr.vercel.app/',
+            'link2': 'https://github.com/GugaDev7/flutter-easytasks',
           },
         ];
 
@@ -52,14 +49,14 @@ class ProjectsScreen extends StatelessWidget {
               Center(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(6),
                     child: Column(
                       children: [
-                        const Text(
-                          "Meus Principais Trabalhos",
-                          style: TextStyles.title,
+                        Text(
+                          AppStrings.get('myProjects'),
+                          style: TextStyles.presentation(isMobile ? 30 : 40),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 8),
                         GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
@@ -67,9 +64,9 @@ class ProjectsScreen extends StatelessWidget {
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: crossAxisCount,
-                                crossAxisSpacing: 16,
-                                mainAxisSpacing: 16,
-                                childAspectRatio: 1,
+                                crossAxisSpacing: 5,
+                                mainAxisSpacing: 5,
+                                childAspectRatio: childAspectRatio.toDouble(),
                               ),
                           itemBuilder: (context, index) {
                             final project = projects[index];
@@ -78,6 +75,7 @@ class ProjectsScreen extends StatelessWidget {
                               nameValue: project['name']!,
                               descriptionValue: project['description']!,
                               linkValue: project['link']!,
+                              linkValue2: project['link2']!,
                             );
                           },
                         ),

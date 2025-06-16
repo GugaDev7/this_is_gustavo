@@ -69,6 +69,18 @@ class _TypingTextState extends State<TypingText> {
   }
 
   @override
+  void didUpdateWidget(TypingText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.text != widget.text) {
+      _typingTimer?.cancel();
+      _blinkTimer?.cancel();
+      _currentIndex = 0;
+      _finished = false;
+      _startTyping();
+    }
+  }
+
+  @override
   void dispose() {
     _typingTimer?.cancel();
     _blinkTimer?.cancel();
@@ -78,7 +90,9 @@ class _TypingTextState extends State<TypingText> {
   @override
   Widget build(BuildContext context) {
     final isTyping = _currentIndex < widget.text.length;
-    final showCursor = widget.showCursor && (isTyping || (widget.showCursorAtEnd && !isTyping && _showBlinkCursor));
+    final showCursor =
+        widget.showCursor &&
+        (isTyping || (widget.showCursorAtEnd && !isTyping && _showBlinkCursor));
     final text = widget.text.substring(0, _currentIndex);
 
     return RichText(
@@ -91,7 +105,13 @@ class _TypingTextState extends State<TypingText> {
             child: AnimatedOpacity(
               opacity: showCursor ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 100),
-              child: Text(widget.cursor, style: widget.style?.copyWith(height: 1.0, fontSize: widget.style?.fontSize)),
+              child: Text(
+                widget.cursor,
+                style: widget.style?.copyWith(
+                  height: 1.0,
+                  fontSize: widget.style?.fontSize,
+                ),
+              ),
             ),
           ),
         ],
